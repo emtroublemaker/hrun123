@@ -1543,7 +1543,7 @@ scene("lose",  (score, Gender) => {
 
     let TryButton = add([
         sprite("TryButton"),
-        pos(width()/4 - 150, height()/2+50),
+        pos(width()/4 - 155, height()/2+40),
         origin("topleft"),
         area(),
         scale(0.8),
@@ -1579,11 +1579,11 @@ scene("lose",  (score, Gender) => {
     ])
 
     add([
-        text(score),
-        // text(score, {
-        //     font:"apl386",
-        //     size: 80,
-        // }),
+       
+        text(score, {
+            font:"apl386",
+            size: 80,
+        }),
         pos(width()/4 - 40, height()/2),
         scale(0.65),
         origin("center"),
@@ -1823,16 +1823,16 @@ function DoorAnim(){
 
 //go("station");
 //go("game", stamina, score, currency, SPEED=550,);
-go("main");
+//go("main");
 //go("station", stamina=0, score, currency=50, SPEED=550, Gender = 0);
 
 //go("station", stamina=5, score, currency=50, SPEED=550, Gender = 0);
-//go("lose", score=50);
+//go("lose", score=5000);
 //go("menu");
 
 //go("lose", score=10);
 
-//sgo("main");
+go("main");
 
 
 
@@ -1844,24 +1844,33 @@ async function submit(score){
 
     //display leader board
     add([
-        text(val00[0]),
-        pos(width() - 200, height()/2+20),
+        text(val00[0], {
+            font:"apl386",
+            size: 80,
+        }),
+        pos(width() - 200, height()/2+15),
         scale(0.35),
         layer("top"),
         origin("center"),
         ]);
 
     add([
-        text(val00[1]),
-        pos(width() - 200, height()/2+50),
+        text(val00[1], {
+            font:"apl386",
+            size: 80,
+        }),
+        pos(width() - 200, height()/2+45),
         scale(0.35),
         layer("top"),
         origin("center"),
         ]);
 
     add([
-        text(val00[2]),
-        pos(width() - 200, height()/2+80),
+        text(val00[2], {
+            font:"apl386",
+            size: 80,
+        }),
+        pos(width() - 200, height()/2+75),
         scale(0.35),
         layer("top"),
         origin("center"),

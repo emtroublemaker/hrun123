@@ -25,22 +25,28 @@ $sql = "INSERT INTO htable VALUES ('$score')";
     //echo $tmp;
 $fetch = "SELECT * FROM htable ORDER BY score DESC LIMIT 3"; 
 $result = $conn->query($fetch);
-
-$leader = [];
 if(mysqli_num_rows($result)){
-    while($row = mysqli_fetch_assoc($result)){
+//     while($row = mysqli_fetch_assoc($result)){
         //$leader = $row;
+        $leader[0] = mysqli_fetch_array($result)[0];
+        $leader[1] = mysqli_fetch_array($result)[0];
+        $leader[2] = mysqli_fetch_array($result)[0];
         //echo $leader["score"]." "." ";'
 
-        echo $row["score"]." "." ";
+        //echo $row["score"]." "." ";
+
         
-    }
-}else{
+    }else{
     echo "0 results";
 }
 
+echo $leader[0]." "." ";
+echo $leader[1]." "." ";
+echo $leader[2]." "." ";
+
+
 if($conn->query($sql)==TRUE){
-    echo '';
+    // echo $leader["score"]." "." ";
 }
     else{
         echo "Error: ".$sql."<br>".$conn->error;

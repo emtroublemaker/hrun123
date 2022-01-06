@@ -19,23 +19,13 @@ if($conn->connect_error){
 
 $score= [];
 $score = mysqli_real_escape_string($conn, $_POST['score']);
-//echo "<script>console.log($score)</script>";
 $sql = "INSERT INTO htable VALUES ('$score')";
-//$tmp = "<script>".$score."</script>";
-    //echo $tmp;
 $fetch = "SELECT * FROM htable ORDER BY score DESC LIMIT 3"; 
 $result = $conn->query($fetch);
 if(mysqli_num_rows($result)){
-//     while($row = mysqli_fetch_assoc($result)){
-        //$leader = $row;
         $leader[0] = mysqli_fetch_array($result)[0];
         $leader[1] = mysqli_fetch_array($result)[0];
         $leader[2] = mysqli_fetch_array($result)[0];
-        //echo $leader["score"]." "." ";'
-
-        //echo $row["score"]." "." ";
-
-        
     }else{
     echo "0 results";
 }
@@ -51,11 +41,6 @@ if($conn->query($sql)==TRUE){
     else{
         echo "Error: ".$sql."<br>".$conn->error;
     }
-/*
-$jsonurl = "./game.js";
-$json = file_get_contents($jsonurl)
-var_dump(($json));
-*/
 $conn->close();
 
 

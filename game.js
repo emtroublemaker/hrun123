@@ -1100,12 +1100,6 @@ scene("lose",  (score, Gender) => {
     //  val00[2] = '<?=$leader[2]?>';
      
 
-     submit(score);
-     debug.log(val00);
-    //  let noob = new Array(submit(score));
-    //  debug.log(noob);
-    //fetchScore(val00);
-
        layers([
              "bot",
              "mid",
@@ -1168,29 +1162,32 @@ scene("lose",  (score, Gender) => {
     ]);
 
        //for leader board
-   add([
-    text(val00[0]),
-    pos(width() - 200, height()/2+20),
-    scale(0.35),
-     layer("top"),
-    origin("center"),
-]);
+    // add([
+    // //text(val00[0]),
+    // pos(width() - 200, height()/2+20),
+    // scale(0.35),
+    //  layer("top"),
+    // origin("center"),
+    // ]);
 
-add([
-    text(val00[1]),
-    pos(width() - 200, height()/2+50),
-    scale(0.35),
-     layer("top"),
-    origin("center"),
-]);
+    // add([
+    // text(val00[1]),
+    // pos(width() - 200, height()/2+50),
+    // scale(0.35),
+    //  layer("top"),
+    // origin("center"),
+    // ]);
 
-add([
-     text(val00[2]),
-    pos(width() - 200, height()/2+80),
-    scale(0.35),
-     layer("top"),
-    origin("center"),
-]);
+    // add([
+    //  text(val00[2]),
+    // pos(width() - 200, height()/2+80),
+    // scale(0.35),
+    //  layer("top"),
+    // origin("center"),
+    // ]);
+    
+    //submit score and display leaderboard
+    submit(score);
 
     // go back to game with space is pressed
     //keyPress("ButtonCont", "space", () => go("game", stamina, score=0, currency, SPEED, Gender));
@@ -1419,24 +1416,55 @@ go("main");
 //for passing score to php via index
 // let test = "";
 // let xyz = "";
-    function submit(score){
+    async function submit(score){
+        await submitfetchscore(score);
+        console.log("output from submit function is: ", val00);
+        val00 = val00.split('  ');
+        console.log("fetched value of val is: ",val00);
+        //display leader board
+        add([
+            text(val00[0]),
+            pos(width() - 200, height()/2+20),
+            scale(0.35),
+            layer("top"),
+            origin("center"),
+            ]);
+    
+        add([
+            text(val00[1]),
+            pos(width() - 200, height()/2+50),
+            scale(0.35),
+            layer("top"),
+            origin("center"),
+            ]);
+    
+        add([
+            text(val00[2]),
+            pos(width() - 200, height()/2+80),
+            scale(0.35),
+            layer("top"),
+            origin("center"),
+            ]);
+        //console.log(xyz);        
+    }
+
+    function submitfetchscore(score){
         console.log("User score is: ", score);
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
+        let myPromise = new Promise(function(resolve){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 val00 = this.responseText;
                 console.log(val00);
-                //xyz = new Array(test);
-               //console.log(xyz)
-               //return test; 
+                resolve();
             } 
         };
         var formData = new FormData();
         formData.append('score', score);
         xhttp.open("POST", "server.php",true); 
         xhttp.send(formData);
-        //console.log(xyz);
-        
+        })
+        return myPromise;        
     }
     
     //console.log(test);

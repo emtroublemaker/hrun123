@@ -1098,9 +1098,10 @@ scene("lose",  (score, Gender) => {
     //  val00[0] = '<?=$leader[0]?>';
     //  val00[1] = '<?=$leader[1]?>';
     //  val00[2] = '<?=$leader[2]?>';
-     debug.log(val00);
+     
 
      submit(score);
+     debug.log(val00);
     //  let noob = new Array(submit(score));
     //  debug.log(noob);
     //fetchScore(val00);

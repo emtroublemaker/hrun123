@@ -1085,21 +1085,25 @@ scene("station", (stamina, score, currency, SPEED, Gender, Mute) => {
     */
 })
 
+var val00 = [0,0,0];
+
 //Scene after lost/ colliding with the bag
 scene("lose",  (score, Gender) => {
  
-     //let BagCollide = true;
+     //let BagCollide = true; 
      //fullscreen(BagCollide);
 
-     var val00 = [0,0,0];
+     //var val00 = [0,0,0];
     
-     val00[0] = '<?=$leader[0]?>';
-     val00[1] = '<?=$leader[1]?>';
-     val00[2] = '<?=$leader[2]?>';
+    //  val00[0] = '<?=$leader[0]?>';
+    //  val00[1] = '<?=$leader[1]?>';
+    //  val00[2] = '<?=$leader[2]?>';
      debug.log(val00);
 
-    submit(score);
-    fetchScore(val00);
+     submit(score);
+    //  let noob = new Array(submit(score));
+    //  debug.log(noob);
+    //fetchScore(val00);
 
        layers([
              "bot",
@@ -1412,33 +1416,44 @@ go("main");
 
 
 //for passing score to php via index
+// let test = "";
+// let xyz = "";
     function submit(score){
         console.log("User score is: ", score);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
+                val00 = this.responseText;
+                console.log(val00);
+                //xyz = new Array(test);
+               //console.log(xyz)
+               //return test; 
             } 
         };
         var formData = new FormData();
         formData.append('score', score);
         xhttp.open("POST", "server.php",true); 
         xhttp.send(formData);
+        //console.log(xyz);
+        
     }
+    
+    //console.log(test);
+    
 
-    function fetchScore(val00) {
-        console.log("Heigh scores are: ",val00)
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function(){
-            if (this.readyState == 4 && this.status == 200){
-                console.log(this.responseText);
-            }
-        };
-        // var highscore = new Highscore();
-        // highscore.append('score',score);
+    // function fetchScore(val00) {
+    //     console.log("Heigh scores are: ",val00)
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.onreadystatechange = function(){
+    //         if (this.readyState == 4 && this.status == 200){
+    //             console.log(this.responseText);
+    //         }
+    //     };
+        // var xyz = new xyz();
+        // xyz.append('score',score);
         // xhttp.open("POST", "server.php",true); 
-        // xhttp.send(highscore);
-    }
+        // xhttp.send(xyz);
+    //}
         
 
         /*var xhttp = new XMLHttpRequest();
